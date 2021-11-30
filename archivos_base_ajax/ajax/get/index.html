@@ -1,0 +1,32 @@
+<html>
+<head>
+<script type="text/javascript">
+function ajaxget(){
+
+var conexion;
+if (window.XMLHttpRequest)
+  {
+  conexion=new XMLHttpRequest();
+  }
+else
+  {
+  conexion=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+conexion.onreadystatechange=function()
+  {
+  if (conexion.readyState==4 && conexion.status==200)
+    {
+    document.getElementById("midiv").innerHTML=conexion.responseText;
+    }
+  }
+conexion.open("GET","accion.php?variable=Hola",true);
+conexion.send();
+}
+</script>
+</head>
+<body>
+	<a href="#" onclick="ajaxget()">Recupera</a>
+	<div id="midiv"></div>
+</body>
+
+</html>

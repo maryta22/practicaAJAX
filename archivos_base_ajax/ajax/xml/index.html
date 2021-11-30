@@ -1,0 +1,50 @@
+<html>
+<head>
+<script type="text/javascript">
+function cargaXML()
+{
+var conexion;
+var txt,x,i;
+if (window.XMLHttpRequest)
+  {
+  conexion=new XMLHttpRequest();
+  }
+else
+  {
+  conexion=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+conexion.onreadystatechange=function()
+  {
+  if (conexion.readyState==4 && conexion.status==200)
+    {
+    xmlDoc=conexion.responseXML;
+    txt="<table>";
+    
+    x=xmlDoc.getElementsByTagName("titulo");
+    artista=xmlDoc.getElementsByTagName("artista");
+    pais=xmlDoc.getElementsByTagName("pais");
+    firma=xmlDoc.getElementsByTagName("firma");
+    precio=xmlDoc.getElementsByTagName("precio");
+    anio=xmlDoc.getElementsByTagName("anio");
+    
+    for (i=0;i<x.length;i++)
+      {
+      txt=txt + "<tr><td>" + x[i].childNodes[0].nodeValue +"</td><td>"+ artista[i].childNodes[0].nodeValue +"</td><td>"+ pais[i].childNodes[0].nodeValue+ "</td><td>"+ firma[i].childNodes[0].nodeValue+ "</td><td>"+ precio[i].childNodes[0].nodeValue+ "</td><td>"+ anio[i].childNodes[0].nodeValue+ "</td></tr>";
+       }
+    document.getElementById("myDiv").innerHTML=txt;
+    }
+  }
+  conexion.open("GET","discoteca.xml",true);
+  conexion.send();
+}
+</script>
+</head>
+<body>
+<h2>Mi coleccion:</h2>
+<div id="myDiv">
+
+
+</div>
+<button type="button" onclick="cargaXML()">Tomar mi coleccion</button>
+</body>
+</html>
