@@ -1,8 +1,10 @@
 <html>
 	<head>
+		<!--Script tipo texto de javascript-->
 		<script type="text/javascript">
 		function ejecutarajax(){
 			var conexion;
+			//Condición en caso de que sea un navegador no complatible
 			if (window.XMLHttpRequest)			  {
 			  conexion=new XMLHttpRequest();
 			}else
@@ -14,6 +16,7 @@
 					document.getElementById("midiv").innerHTML=conexion.responseText;
 				}
 			}
+			//metodo, archivo y si es asíncrona
 			conexion.open("GET","ejemplo.txt",true);
 			conexion.send();
 		}

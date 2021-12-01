@@ -1,5 +1,3 @@
 <?php
-
-echo $_GET['variable'];
-
+    echo $_GET['variable'];
 ?>

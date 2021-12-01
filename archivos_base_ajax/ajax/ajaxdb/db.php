@@ -1,27 +1,23 @@
 <?php
+	//echo $_GET['c'];
+	$db = new PDO('sqlite:/clientes.db');
+	$sql = 'SELECT * FROM clientes;';
 
-//echo $_GET['c'];
-$conexion = sqlite_open('clientes.db');
-			$consulta = "SELECT * FROM clientes;";
-			$resultado = sqlite_query($conexion,$consulta);
-
-			while($fila = sqlite_fetch_array($resultado)){
-							if($fila['nombre'] == $_GET['c']){
-								echo $fila['nombre'];
-								echo ' - ';
-								echo $fila['direccion'];
-								echo ' - ';
-								
-								echo $fila['telefono'];
-								echo ' - ';
-								echo $fila['codigopostal'];
-								echo ' - ';
-								echo $fila['poblacion'];
-								echo ' - ';	
-								echo $fila['pais'];
-								echo ' - ';
-							}
-						}
-
-sqlite_close($conexion);
+	foreach ($conn-> query($sql) as $row) {
+		if($row['nombre'] == $_GET['c']){
+			echo $row['nombre'];
+			echo ' - ';
+			echo $row['direccion'];
+			echo ' - ';
+			echo $row['telefono'];
+			echo ' - ';
+			echo $row['codigopostal'];
+			echo ' - ';
+			echo $row['poblacion'];
+			echo ' - ';	
+			echo $row['pais'];
+			echo ' - ';
+		}
+	}
+	$db = null;
 ?>
